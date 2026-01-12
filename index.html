@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Express Pressing</title>
+  <style>
+    body {
+      font-family: -apple-system, system-ui, Arial;
+      background: #f5f7fb;
+      margin: 0;
+      padding: 16px;
+    }
+    .card {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 16px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+    h1 { margin-top: 0; }
+    label { display:block; margin-top:12px; font-weight:700; }
+    input, textarea, select {
+      width:100%;
+      padding:12px;
+      margin-top:6px;
+      border-radius:12px;
+      border:1px solid #ccc;
+      box-sizing:border-box;
+    }
+    button {
+      width:100%;
+      margin-top:16px;
+      padding:14px;
+      background:#2f6fed;
+      color:#fff;
+      border:0;
+      border-radius:12px;
+      font-size:16px;
+      font-weight:800;
+    }
+    .info {
+      font-size:14px;
+      margin-bottom:10px;
+      line-height:1.6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>🧺 Express Pressing</h1>
+
+  <div class="info">
+    📍 لكصر – نواكشوط<br>
+    🚚 توصيل مجاني<br>
+    ☎️ 33371707<br>
+    💳 الدفع: بنيكلي / مصرفي / سداد<br>
+    🧾 رقم الدفع: 33371707
+  </div>
+
+  <label>الإيميل</label>
+  <input id="email" type="email" placeholder="example@email.com">
+
+  <label>الخدمة</label>
+  <select id="service">
+    <option>غسيل ملاحف كاز – 250 MRU</option>
+    <option>غسيل ملاحف غير كاز – 300 MRU</option>
+    <option>غسيل دراعة – 600 MRU</option>
+    <option>غسيل ملابس – 100 MRU</option>
+    <option>غسيل بدلة – 400 MRU</option>
+  </select>
+
+  <label>تفاصيل إضافية</label>
+  <textarea id="details" placeholder="اكتب التفاصيل هنا"></textarea>
+
+  <label>العنوان</label>
+  <textarea id="address" placeholder="الحي، الشارع..."></textarea>
+
+  <button onclick="sendOrder()">إرسال الطلب عبر واتساب</button>
+</div>
+
+<script>
+  const WHATSAPP = "22233371707"; // رقم واتساب المغسلة
+
+  function sendOrder() {
+    const email = document.getElementById("email").value;
+    const service = document.getElementById("service").value;
+    const details = document.getElementById("details").value;
+    const address = document.getElementById("address").value;
+
+    if (!email || !address) {
+      alert("رجاءً أدخل الإيميل والعنوان");
+      return;
+    }
+
+    const message =
+`طلب جديد 🧺 Express Pressing
+------------------
+الإيميل: ${email}
+الخدمة: ${service}
+التفاصيل: ${details}
+العنوان: ${address}
+------------------
+الدفع: بنيكلي / مصرفي / سداد
+رقم الدفع: 33371707
+☎️ 33371707`;
+
+    const url = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(message);
+    window.location.href = url;
+  }
+</script>
+
+</body>
+</html>
