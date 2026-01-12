@@ -8,402 +8,488 @@
   <style>
     :root{
       --bg:#ffffff;
-      --text:#111111;
-      --muted:#5a5a5a;
-      --line:#e8e8e8;
       --card:#ffffff;
-      --black:#000000;
+      --text:#111;
+      --muted:#666;
+      --line:#e8e8e8;
+      --accent:#2d6cff;
+      --accent2:#15c16f;
+      --danger:#ff4d4d;
       --radius:18px;
     }
+
     *{box-sizing:border-box}
     body{
       margin:0;
-      padding:16px;
-      font-family: system-ui, -apple-system, "Segoe UI", Arial;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
       background:var(--bg);
       color:var(--text);
+      padding:18px;
     }
-    .wrap{max-width:720px;margin:0 auto;}
+
+    .wrap{max-width:820px;margin:0 auto}
     .card{
       background:var(--card);
       border:1px solid var(--line);
       border-radius:var(--radius);
-      padding:16px;
-      box-shadow:0 10px 30px rgba(0,0,0,.06);
+      padding:18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
     }
-    .header{
-      display:flex;gap:12px;align-items:center;
+
+    .brand{
+      display:flex;align-items:center;gap:14px;margin-bottom:14px;
       border-bottom:1px solid var(--line);
-      padding-bottom:12px;margin-bottom:12px;
+      padding-bottom:14px;
     }
-    .logo{
-      width:72px;height:72px;border:1px solid var(--line);
-      border-radius:16px;display:grid;place-items:center;
+    .brand img{
+      width:90px;height:auto;
+      border-radius:14px;
+      object-fit:contain;
       background:#fff;
-      flex:0 0 auto;
+      border:1px solid var(--line);
+      padding:6px;
     }
-    h1{margin:0;font-size:22px;letter-spacing:.3px}
-    .sub{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.6}
+    .brand h1{margin:0;font-size:28px;letter-spacing:.2px}
+    .brand p{margin:6px 0 0;color:var(--muted);font-size:14px}
+
     .info{
-      padding:12px;border:1px dashed var(--line);border-radius:14px;
-      color:var(--muted);font-size:13px;line-height:1.7;
-      background:#fafafa;
-      margin:12px 0;
+      margin:10px 0 16px;padding:12px;
+      border:1px solid var(--line);
+      border-radius:14px;background:#fafafa;
+      line-height:1.8;font-size:14px;
     }
 
-    label{display:block;margin-top:12px;margin-bottom:6px;font-weight:800;font-size:14px}
-    input, select, textarea{
-      width:100%;
-      padding:12px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      font-size:16px;
-      outline:none;
-      background:#fff;color:var(--text);
-    }
-    textarea{min-height:84px;resize:vertical}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    @media (max-width:560px){ .grid{grid-template-columns:1fr} }
-
-    .serviceBox{
-      margin-top:10px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px;
-      background:#fafafa;
-    }
-    .serviceTitle{margin:0 0 6px;font-weight:900}
-    .serviceDesc{margin:0;color:var(--muted);line-height:1.7}
-
-    .totalRow{
-      margin-top:12px;
-      display:flex;justify-content:space-between;align-items:center;
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px;
-      font-weight:900;
-      background:#fff;
-    }
-
-    .pay{
-      margin-top:12px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px;
-      background:#fafafa;
-      color:var(--muted);
-      font-size:13px;line-height:1.7;
-    }
-
-    .row{
-      display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;
-    }
-    .check{
-      display:flex;align-items:center;gap:8px;
-      border:1px solid var(--line);
+    .badge{
+      display:inline-block;
+      padding:6px 10px;
       border-radius:999px;
-      padding:8px 10px;
+      border:1px solid var(--line);
       background:#fff;
-      color:var(--text);
-      font-size:13px;
-    }
-    .codeBox{
+      color:#444;
+      font-size:12px;
       margin-top:10px;
-      display:none;
-      border:1px dashed var(--line);
-      border-radius:14px;
-      padding:12px;
-      background:#fff;
-      justify-content:space-between;align-items:center;gap:10px;
-    }
-    .code{
-      font-family: ui-monospace, Menlo, Consolas, monospace;
-      font-weight:900;
-      letter-spacing:1px;
-      font-size:16px;
     }
 
-    .btn{
-      width:100%;
-      margin-top:12px;
-      border:none;
-      border-radius:16px;
-      padding:14px;
-      font-size:16px;
+    label{display:block;margin:12px 0 8px;font-weight:700;font-size:14px}
+    input,select,textarea{
+      width:100%;padding:13px 12px;border-radius:14px;
+      border:1px solid var(--line);background:#fff;color:#111;
+      outline:none;font-size:15px;
+    }
+    input::placeholder, textarea::placeholder{color:#999}
+    textarea{min-height:90px;resize:vertical}
+
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:650px){.row{grid-template-columns:1fr}.brand h1{font-size:24px}}
+
+    .sectionTitle{
+      margin-top:16px;
+      padding-top:10px;
+      border-top:1px solid var(--line);
       font-weight:900;
+    }
+
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fff;
+    }
+    th, td{
+      padding:10px 10px;
+      border-bottom:1px solid var(--line);
+      vertical-align:top;
+      font-size:14px;
+    }
+    th{background:#fafafa;text-align:right}
+    tr:last-child td{border-bottom:none}
+
+    .qtyInput{
+      width:90px;
+      padding:10px;
+      border-radius:12px;
+      border:1px solid var(--line);
+    }
+
+    .muted{color:var(--muted);font-size:12px;line-height:1.6}
+
+    .priceBox{
+      margin-top:14px;padding:12px;border-radius:14px;
+      border:1px solid var(--line);background:#fafafa;
+      display:grid;gap:6px;font-size:14px;
+    }
+    .priceBox b{font-size:16px}
+
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{
+      border:none;border-radius:16px;
+      padding:14px 14px;
+      font-size:16px;font-weight:800;
       cursor:pointer;
     }
-    .btnBlack{background:#000;color:#fff}
-    .btnGhost{background:#fff;border:1px solid var(--line);color:#000}
+    .btnWide{flex:1;min-width:220px}
+    .btnPrimary{background:var(--accent);color:#fff}
+    .btnGreen{background:var(--accent2);color:#001b0d}
+    .btnGhost{background:#fff;border:1px solid var(--line);color:#111}
 
-    .warn{
-      display:none;
-      margin-top:10px;
-      border:1px solid #ffd0d0;
-      background:#fff5f5;
-      color:#7a1b1b;
-      padding:10px 12px;
-      border-radius:14px;
-      font-size:13px;
-      line-height:1.6;
+    .codeBox{
+      margin-top:12px;padding:12px;border-radius:14px;
+      border:1px dashed #cfcfcf;background:#fff;
+      display:none;justify-content:space-between;align-items:center;gap:10px;
+    }
+    .code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size:18px;font-weight:900;letter-spacing:1px;
     }
 
-    .mini{margin-top:10px;color:var(--muted);font-size:12px;line-height:1.7}
+    .warn{
+      color:#7a1d1d;
+      background:rgba(255,77,77,.10);
+      border:1px solid rgba(255,77,77,.25);
+      padding:10px 12px;border-radius:14px;
+      margin-top:12px;display:none;
+    }
+
+    .footerNote{text-align:center;color:#777;font-size:12px;margin-top:14px}
+
+    /* ====== الطباعة ====== */
+    @media print{
+      body{padding:0;background:#fff}
+      .noPrint{display:none !important}
+      .card{box-shadow:none;border:none}
+      .info{background:#fff}
+      table{border:1px solid #ccc}
+      th{background:#f3f3f3}
+    }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="card">
+<div class="wrap">
+  <div class="card" id="printArea">
 
-      <div class="header">
-        <!-- لوغو أسود مرسوم بالكود (بدون رفع صور) -->
-        <div class="logo" aria-label="Express Pressing Logo">
-          <svg width="48" height="48" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-            <path d="M20 14h24a6 6 0 0 1 6 6v20c0 6-4 10-10 10H24c-6 0-10-4-10-10V20a6 6 0 0 1 6-6Z" stroke="#000" stroke-width="4" />
-            <path d="M24 26h16" stroke="#000" stroke-width="4" stroke-linecap="round"/>
-            <path d="M24 34h20" stroke="#000" stroke-width="4" stroke-linecap="round"/>
-            <path d="M26 52c2 4 10 6 16 0" stroke="#000" stroke-width="4" stroke-linecap="round"/>
-          </svg>
-        </div>
-
-        <div>
-          <h1>EXPRESS PRESSING</h1>
-          <div class="sub">
-            توصيل مجاني • لكصر - نواكشوط<br>
-            رقم الاتصال: 33371707
-          </div>
-        </div>
-      </div>
-
-      <div class="info">
-        💳 الدفع عبر التطبيقات البنكية: بنيكلي / مصرفي / سداد<br>
-        🧾 رقم الدفع: <b>33371707</b>
-      </div>
-
-      <div class="grid">
-        <div>
-          <label>الاسم</label>
-          <input id="name" type="text" placeholder="اكتب اسمك" />
-        </div>
-        <div>
-          <label>رقم الهاتف</label>
-          <input id="phone" type="tel" placeholder="مثال: 33371707" />
-        </div>
-      </div>
-
-      <div class="grid">
-        <div>
-          <label>الخدمة</label>
-          <select id="service">
-            <option value="250" data-title="غسيل ملاحف كاز" data-unit="للقطعة" data-desc="غسيل ملاحف كاز بجودة عالية">250 MRU — غسيل ملاحف كاز</option>
-            <option value="300" data-title="غسيل ملاحف غير كاز" data-unit="للقطعة" data-desc="غسيل ملاحف غير كاز بجودة عالية">300 MRU — غسيل ملاحف غير كاز</option>
-            <option value="600" data-title="غسيل دراعة" data-unit="للقطعة" data-desc="غسيل وتنظيف دراريع بجودة عالية">600 MRU — غسيل دراعة</option>
-            <option value="100" data-title="غسيل ملابس" data-unit="للقطعة" data-desc="غسيل عادي لجميع أنواع الملابس">100 MRU — غسيل ملابس</option>
-          </select>
-        </div>
-
-        <div>
-          <label>الكمية (1 - 100)</label>
-          <input id="qty" type="number" min="1" max="100" value="1" />
-        </div>
-      </div>
-
-      <div class="serviceBox" id="serviceBox">
-        <p class="serviceTitle" id="serviceTitle">—</p>
-        <p class="serviceDesc" id="serviceDesc">—</p>
-      </div>
-
-      <div class="totalRow">
-        <span>المجموع</span>
-        <span id="total">0 MRU</span>
-      </div>
-
-      <label>العنوان</label>
-      <textarea id="address" placeholder="الحي - الشارع - أقرب نقطة..."></textarea>
-
-      <label>ملاحظات (اختياري)</label>
-      <textarea id="notes" placeholder="مثال: مستعجل / بدون عطر / بقع..."></textarea>
-
-      <div class="pay">
-        📸 بعد الدفع: ارفع سكرينشوت الدفع هنا (اختياري) ثم اضغط “تم الدفع” ليطلع كود الطلب.<br>
-        ⚠️ ملاحظة مهمة: الموقع ما يرسل الصورة تلقائيًا، لازم الزبون يرفقها يدويًا داخل واتساب بعد ما تفتح المحادثة.
-      </div>
-
-      <label>سكرينشوت الدفع (اختياري)</label>
-      <input id="payShot" type="file" accept="image/*" />
-
-      <div class="row">
-        <label class="check">
-          <input id="paid" type="checkbox" />
-          تم الدفع
-        </label>
-        <button class="btn btnGhost" id="genCodeBtn" type="button">إصدار كود الطلب</button>
-      </div>
-
-      <div class="codeBox" id="codeBox">
-        <div>
-          <div style="color:#666;font-size:12px;margin-bottom:4px;">كود الطلب</div>
-          <div class="code" id="orderCode">XP-0000</div>
-        </div>
-        <button class="btn btnGhost" id="copyBtn" type="button" style="width:auto;margin:0;padding:10px 12px;">نسخ</button>
-      </div>
-
-      <div class="warn" id="warn"></div>
-
-      <button class="btn btnBlack" id="waBtn" type="button">إرسال الطلب عبر واتساب</button>
-
-      <div class="mini">
-        ✅ توصيل مجاني • موقع: لكصر نواكشوط • رقم: 33371707
+    <div class="brand">
+      <img src="logo.PNG" alt="Express Pressing Logo">
+      <div>
+        <h1>Express Pressing</h1>
+        <p>~ Fresh • Fast • Clean ~</p>
       </div>
     </div>
+
+    <div class="info">
+      📍 لكصر - نواكشوط<br>
+      🚚 توصيل مجاني<br>
+      ☎️ 33371707<br>
+      💳 الدفع: بنكيلي / مصرفي / سداد<br>
+      🧾 رقم الدفع: 33371707
+      <div class="badge noPrint">بعد الدفع: ارفع سكرينشوت وسيطلع لك كود + تقدر تطبع فاتورة</div>
+    </div>
+
+    <div class="row noPrint">
+      <div>
+        <label>الاسم</label>
+        <input id="name" placeholder="اكتب اسمك" />
+      </div>
+      <div>
+        <label>رقم الهاتف</label>
+        <input id="phone" inputmode="numeric" placeholder="مثال: 33371707" />
+      </div>
+    </div>
+
+    <div class="row noPrint">
+      <div>
+        <label>العنوان</label>
+        <textarea id="address" placeholder="الحي - الشارع - أقرب نقطة"></textarea>
+      </div>
+      <div>
+        <label>تفاصيل إضافية (اختياري)</label>
+        <textarea id="details" placeholder="مثال: ملابس بيضاء، حساسية من العطر..."></textarea>
+      </div>
+    </div>
+
+    <div class="noPrint">
+      <label>سكرينشوت الدفع (اختياري)</label>
+      <input id="payShot" type="file" accept="image/*" />
+      <div class="muted">ملاحظة: الموقع لا يرسل الصورة تلقائيًا لواتساب. بعد فتح واتساب ارفق السِكرينشوت يدويًا.</div>
+    </div>
+
+    <div class="sectionTitle">الخدمات والأسعار (أدخل الكمية لكل خدمة)</div>
+
+    <table class="noPrint">
+      <thead>
+        <tr>
+          <th style="width:40%;">الخدمة</th>
+          <th>الوصف</th>
+          <th style="width:110px;">السعر</th>
+          <th style="width:120px;">الكمية</th>
+        </tr>
+      </thead>
+      <tbody id="servicesBody"></tbody>
+    </table>
+
+    <div class="priceBox">
+      <div>المجموع: <b id="grandTotal">0</b> MRO</div>
+      <div class="muted">* السعر محسوب = (سعر القطعة × الكمية)</div>
+    </div>
+
+    <div class="warn noPrint" id="warnBox"></div>
+
+    <div class="btnRow noPrint">
+      <button class="btn btnGreen btnWide" id="genCodeBtn">✅ طلّع كود (20 - 2000)</button>
+      <button class="btn btnGhost btnWide" id="printBtn">🖨️ طباعة فاتورة</button>
+      <button class="btn btnPrimary btnWide" id="waBtn">إرسال الطلب عبر واتساب</button>
+    </div>
+
+    <div class="codeBox noPrint" id="codeBox">
+      <div>
+        <div style="color:#777;font-size:12px;">كود الطلب</div>
+        <div class="code" id="orderCode">—</div>
+      </div>
+      <button class="btn btnGhost" style="width:auto;margin:0;padding:10px 12px;" id="copyBtn">نسخ</button>
+    </div>
+
+    <!-- نسخة للطباعة (تظهر عند الطباعة) -->
+    <div class="sectionTitle" style="margin-top:18px;">الفاتورة</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>الخدمة</th>
+          <th>السعر</th>
+          <th>الكمية</th>
+          <th>المجموع</th>
+        </tr>
+      </thead>
+      <tbody id="invoiceBody">
+        <tr><td colspan="4" class="muted">اختر خدمات/كميات من الأعلى (ثم اطبع).</td></tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="3">الإجمالي</th>
+          <th><span id="invoiceTotal">0</span> MRO</th>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="footerNote">© Express Pressing</div>
   </div>
+</div>
 
-  <script>
-    // غيّر رقم واتساب هنا إذا لازم (كود الدولة + الرقم بدون +)
-    const WHATSAPP_NUMBER = "22233371707";
+<script>
+  // ====== إعداد رقم واتساب (بدّل الرقم إذا بدك) ======
+  // رقم موريتانيا بصيغة دولية بدون +
+  const WHATSAPP_NUMBER = "22233371707";
 
-    const serviceEl = document.getElementById("service");
-    const qtyEl = document.getElementById("qty");
-    const totalEl = document.getElementById("total");
-    const titleEl = document.getElementById("serviceTitle");
-    const descEl = document.getElementById("serviceDesc");
+  // ====== قائمة الخدمات (تقدر تعدّل الأسعار/النص بسهولة هنا) ======
+  // ملاحظة: المستخدم طلب MRO
+  const SERVICES = [
+    // (اللي طلبتهم انت)
+    {name:"غسيل ملاحف كاز", desc:"للقطعة — غسيل ملاحف كاز بجودة عالية", price:250},
+    {name:"غسيل ملاحف غير كاز", desc:"للقطعة — غسيل ملاحف غير كاز بجودة عالية", price:300},
+    {name:"غسيل دراعة", desc:"للقطعة — غسيل وتنظيف دراريع بجودة عالية", price:600},
+    {name:"غسيل ملابس", desc:"للقطعة — غسيل عادي لجميع أنواع الملابس", price:100},
+    {name:"غسيل بدلة", desc:"للقطعة — تنظيف جاف احترافي للبدل الرسمية", price:400},
 
-    const paidEl = document.getElementById("paid");
-    const payShotEl = document.getElementById("payShot");
-    const genCodeBtn = document.getElementById("genCodeBtn");
-    const codeBox = document.getElementById("codeBox");
-    const orderCodeEl = document.getElementById("orderCode");
-    const copyBtn = document.getElementById("copyBtn");
-    const warnEl = document.getElementById("warn");
+    // (إضافات من الفاتورة/الصورة — إذا بدك احذف اللي ما تريده)
+    {name:"بدلة (فاتورة)", desc:"قطعة واحدة", price:1300},
+    {name:"فست", desc:"قطعة واحدة", price:700},
+    {name:"بنطلون", desc:"قطعة واحدة", price:200},
+    {name:"قميص", desc:"قطعة واحدة", price:200},
+    {name:"تِيشيرت / تشرت", desc:"قطعة واحدة", price:100},
+    {name:"سروال", desc:"قطعة واحدة", price:200},
+    {name:"كوفرلي", desc:"قطعة واحدة", price:700},
+    {name:"ملحفة كاز (فاتورة)", desc:"قطعة واحدة", price:200},
+    {name:"ملحفة (فاتورة)", desc:"قطعة واحدة", price:250},
+    {name:"دراعة بازا (فاتورة)", desc:"قطعة واحدة", price:500},
+    {name:"جلابية", desc:"قطعة واحدة", price:300},
+    {name:"جاكيت", desc:"قطعة واحدة", price:300},
+    {name:"ربابة", desc:"قطعة واحدة", price:100}
+  ];
 
-    const nameEl = document.getElementById("name");
-    const phoneEl = document.getElementById("phone");
-    const addressEl = document.getElementById("address");
-    const notesEl = document.getElementById("notes");
-    const waBtn = document.getElementById("waBtn");
+  const servicesBody = document.getElementById("servicesBody");
+  const invoiceBody  = document.getElementById("invoiceBody");
+  const grandTotalEl = document.getElementById("grandTotal");
+  const invoiceTotalEl = document.getElementById("invoiceTotal");
 
-    let ORDER_CODE = "";
+  const nameEl = document.getElementById("name");
+  const phoneEl = document.getElementById("phone");
+  const addressEl = document.getElementById("address");
+  const detailsEl = document.getElementById("details");
+  const payShotEl = document.getElementById("payShot");
 
-    function warn(msg){
-      warnEl.style.display = "block";
-      warnEl.textContent = msg;
-      setTimeout(()=>{ warnEl.style.display = "none"; }, 3500);
-    }
+  const warnBox = document.getElementById("warnBox");
+  const genCodeBtn = document.getElementById("genCodeBtn");
+  const codeBox = document.getElementById("codeBox");
+  const orderCodeEl = document.getElementById("orderCode");
+  const copyBtn = document.getElementById("copyBtn");
+  const waBtn = document.getElementById("waBtn");
+  const printBtn = document.getElementById("printBtn");
 
-    function clampQty(){
-      let q = parseInt(qtyEl.value || "1", 10);
-      if (isNaN(q)) q = 1;
-      if (q < 1) q = 1;
-      if (q > 100) q = 100;
-      qtyEl.value = q;
-      return q;
-    }
+  let ORDER_CODE = "";
 
-    function getService(){
-      const opt = serviceEl.options[serviceEl.selectedIndex];
-      return {
-        price: parseInt(opt.value || "0", 10),
-        title: opt.dataset.title || opt.text,
-        unit: opt.dataset.unit || "",
-        desc: opt.dataset.desc || ""
-      };
-    }
+  function showWarn(msg){
+    warnBox.style.display = "block";
+    warnBox.textContent = msg;
+    setTimeout(()=>{ warnBox.style.display = "none"; }, 3500);
+  }
 
-    function update(){
-      const s = getService();
-      const q = clampQty();
-      titleEl.textContent = `${s.price} MRU — ${s.title} (${s.unit})`;
-      descEl.textContent = s.desc;
-      totalEl.textContent = `${s.price * q} MRU`;
-    }
+  function hasPaymentProof(){
+    return (payShotEl.files && payShotEl.files.length > 0);
+  }
 
-    function makeCode(){
-      const d = new Date();
-      const y = d.getFullYear();
-      const m = String(d.getMonth()+1).padStart(2,"0");
-      const day = String(d.getDate()).padStart(2,"0");
-      const rnd = Math.floor(1000 + Math.random() * 9000);
-      return `XP-${y}${m}${day}-${rnd}`;
-    }
+  function makeCode20to2000(){
+    // رقم من 20 إلى 2000
+    const n = Math.floor(Math.random() * (2000 - 20 + 1)) + 20;
+    return "XP-" + n;
+  }
 
-    genCodeBtn.addEventListener("click", ()=>{
-      // اختياري: إذا بدك تجبرهم يحددوا "تم الدفع"
-      if(!paidEl.checked){
-        warn("فعّل خيار (تم الدفع) أولاً ✅");
-        return;
+  function renderServices(){
+    servicesBody.innerHTML = "";
+    SERVICES.forEach((s, i)=>{
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><b>${s.name}</b></td>
+        <td class="muted">${s.desc}</td>
+        <td><b>${s.price}</b> MRO</td>
+        <td>
+          <input class="qtyInput" type="number" min="0" max="100" value="0" data-idx="${i}">
+        </td>
+      `;
+      servicesBody.appendChild(tr);
+    });
+
+    servicesBody.querySelectorAll('input.qtyInput').forEach(inp=>{
+      inp.addEventListener("input", calcAll);
+    });
+  }
+
+  function getSelectedItems(){
+    const items = [];
+    servicesBody.querySelectorAll('input.qtyInput').forEach(inp=>{
+      const idx = parseInt(inp.getAttribute("data-idx"), 10);
+      let qty = parseInt(inp.value || "0", 10);
+      if(isNaN(qty)) qty = 0;
+      if(qty < 0) qty = 0;
+      if(qty > 100) qty = 100;
+      inp.value = qty;
+
+      if(qty > 0){
+        const s = SERVICES[idx];
+        items.push({
+          name: s.name,
+          price: s.price,
+          qty,
+          sub: s.price * qty
+        });
       }
+    });
+    return items;
+  }
 
-      // اختياري: إذا بدك تجبرهم يرفعوا سكرينشوت قبل الكود
-      // if(!(payShotEl.files && payShotEl.files.length)){ warn("ارفع سكرينشوت الدفع أولاً"); return; }
+  function calcAll(){
+    const items = getSelectedItems();
+    const total = items.reduce((a,b)=>a+b.sub, 0);
+    grandTotalEl.textContent = total;
+    invoiceTotalEl.textContent = total;
 
-      if(!ORDER_CODE) ORDER_CODE = makeCode();
+    if(items.length === 0){
+      invoiceBody.innerHTML = `<tr><td colspan="4" class="muted">ما اخترت أي خدمة بعد.</td></tr>`;
+      return;
+    }
+
+    invoiceBody.innerHTML = items.map(it=>`
+      <tr>
+        <td>${it.name}</td>
+        <td>${it.price} MRO</td>
+        <td>${it.qty}</td>
+        <td><b>${it.sub}</b> MRO</td>
+      </tr>
+    `).join("");
+  }
+
+  genCodeBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    // إذا بدك تجعل السِكرينشوت "إجباري" قبل الكود، فك التعليق:
+    // if(!hasPaymentProof()){ showWarn("لازم ترفع سكرينشوت الدفع أولاً"); return; }
+
+    if(!ORDER_CODE) ORDER_CODE = makeCode20to2000();
+    orderCodeEl.textContent = ORDER_CODE;
+    codeBox.style.display = "flex";
+    showWarn("تم إنشاء الكود ✅");
+  });
+
+  copyBtn.addEventListener("click", async ()=>{
+    try{
+      await navigator.clipboard.writeText(orderCodeEl.textContent);
+      showWarn("تم النسخ ✅");
+    }catch{
+      showWarn("انسخ الكود يدويًا");
+    }
+  });
+
+  printBtn.addEventListener("click", ()=>{
+    const items = getSelectedItems();
+    if(items.length === 0){ showWarn("اختَر خدمات/كميات أولاً قبل الطباعة"); return; }
+    window.print();
+  });
+
+  waBtn.addEventListener("click", ()=>{
+    const name = (nameEl.value || "").trim();
+    const phone = (phoneEl.value || "").trim();
+    const address = (addressEl.value || "").trim();
+    const details = (detailsEl.value || "").trim();
+
+    const items = getSelectedItems();
+    const total = parseInt(grandTotalEl.textContent || "0", 10);
+
+    if(!name || !phone || !address){
+      showWarn("اكتب الاسم + رقم الهاتف + العنوان أولاً");
+      return;
+    }
+    if(items.length === 0){
+      showWarn("اختَر خدمة واحدة على الأقل (كمية > 0)");
+      return;
+    }
+
+    if(!ORDER_CODE){
+      ORDER_CODE = makeCode20to2000();
       orderCodeEl.textContent = ORDER_CODE;
       codeBox.style.display = "flex";
-      warn("تم إصدار كود الطلب ✅");
-    });
+    }
 
-    copyBtn.addEventListener("click", async ()=>{
-      try{
-        await navigator.clipboard.writeText(orderCodeEl.textContent);
-        warn("تم النسخ ✅");
-      }catch{
-        warn("انسخ الكود يدويًا");
-      }
-    });
+    const payNote = hasPaymentProof()
+      ? "✅ تم رفع سكرينشوت الدفع (ارسلها في واتساب)"
+      : "⚠️ لم يتم رفع سكرينشوت (ارسلها في واتساب بعد الدفع)";
 
-    waBtn.addEventListener("click", ()=>{
-      const name = nameEl.value.trim();
-      const phone = phoneEl.value.trim();
-      const address = addressEl.value.trim();
-      const notes = notesEl.value.trim();
+    const lines = items.map(it=>`- ${it.name} | ${it.qty} × ${it.price} = ${it.sub} MRO`).join("\n");
 
-      if(!name || !phone || !address){
-        warn("اكتب الاسم + رقم الهاتف + العنوان أولاً");
-        return;
-      }
-
-      const s = getService();
-      const q = clampQty();
-      const total = s.price * q;
-
-      // لو ما طلع كود ولسه عامل تم الدفع → نطلع كود تلقائي
-      if(paidEl.checked && !ORDER_CODE){
-        ORDER_CODE = makeCode();
-        orderCodeEl.textContent = ORDER_CODE;
-        codeBox.style.display = "flex";
-      }
-
-      const hasShot = (payShotEl.files && payShotEl.files.length) ? "✅ يوجد سكرينشوت (يرسل على واتساب)" : "⚠️ بدون سكرينشوت (يرسل على واتساب بعد الدفع)";
-      const codeLine = ORDER_CODE ? `كود الطلب: ${ORDER_CODE}` : "كود الطلب: (غير صادر بعد)";
-
-      const msg =
-`طلب جديد - EXPRESS PRESSING
+    const msg =
+`طلب جديد - Express Pressing
+————————————
 الاسم: ${name}
-الهاتف: ${phone}
-
-الخدمة: ${s.title}
-السعر: ${s.price} MRU (${s.unit})
-الكمية: ${q}
-المجموع: ${total} MRU
-
+رقم الهاتف: ${phone}
 العنوان: ${address}
-ملاحظات: ${notes || "—"}
+تفاصيل: ${details || "—"}
+الخدمات:
+${lines}
+————————————
+الإجمالي: ${total} MRO
+الدفع: ${payNote}
+كود الطلب: ${ORDER_CODE}
+————————————
+(بعد إرسال هذه الرسالة، أرفق سكرينشوت الدفع هنا في واتساب)`;
 
-الدفع: ${paidEl.checked ? "تم الدفع ✅" : "لم يتم الدفع بعد"}
-${hasShot}
-${codeLine}
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    window.open(url, "_blank");
+  });
 
-رقم الدفع: 33371707
-(أرفق سكرينشوت الدفع هنا في واتساب)`;
+  // تشغيل أولي
+  renderServices();
+  calcAll();
+</script>
 
-      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-      window.open(url, "_blank");
-    });
-
-    serviceEl.addEventListener("change", update);
-    qtyEl.addEventListener("input", update);
-    update();
-  </script>
 </body>
 </html>
