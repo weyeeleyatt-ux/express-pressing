@@ -1,116 +1,410 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Express Pressing</title>
+
   <style>
-    body {
-      font-family: -apple-system, system-ui, Arial;
-      background: #f5f7fb;
-      margin: 0;
-      padding: 16px;
+    :root{
+      --bg:#000;
+      --card:#0b0b0b;
+      --text:#fff;
+      --muted:#bdbdbd;
+      --line:#222;
+      --accent:#2d6cff;
+      --accent2:#15c16f;
+      --danger:#ff4d4d;
+      --radius:18px;
     }
-    .card {
-      max-width: 600px;
-      margin: auto;
-      background: #fff;
-      padding: 16px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
+      background: radial-gradient(1200px 600px at 50% -200px, #222 0%, #000 60%);
+      color:var(--text);
+      padding:18px;
     }
-    h1 { margin-top: 0; }
-    label { display:block; margin-top:12px; font-weight:700; }
-    input, textarea, select {
-      width:100%;
+
+    .wrap{
+      max-width:680px;
+      margin:0 auto;
+    }
+
+    .card{
+      background: linear-gradient(180deg, #0b0b0b 0%, #050505 100%);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow: 0 12px 36px rgba(0,0,0,.45);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:14px;
+    }
+    .brand img{
+      width:64px;
+      height:64px;
+      border-radius:16px;
+      object-fit:cover;
+      border:1px solid #333;
+      background:#111;
+    }
+    .brand h1{
+      margin:0;
+      font-size:28px;
+      letter-spacing:.5px;
+    }
+    .brand p{
+      margin:6px 0 0 0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .info{
+      margin:10px 0 16px 0;
       padding:12px;
-      margin-top:6px;
-      border-radius:12px;
-      border:1px solid #ccc;
-      box-sizing:border-box;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#070707;
+      color:#eaeaea;
+      line-height:1.8;
+      font-size:14px;
     }
-    button {
+
+    label{
+      display:block;
+      margin:12px 0 8px;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    input, select, textarea{
       width:100%;
-      margin-top:16px;
-      padding:14px;
-      background:#2f6fed;
+      padding:13px 12px;
+      border-radius:14px;
+      border:1px solid #2a2a2a;
+      background:#0d0d0d;
       color:#fff;
-      border:0;
-      border-radius:12px;
+      outline:none;
+      font-size:15px;
+    }
+
+    input::placeholder, textarea::placeholder{color:#777}
+
+    textarea{min-height:90px; resize:vertical}
+
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width:560px){
+      .row{grid-template-columns:1fr}
+      .brand h1{font-size:24px}
+    }
+
+    .priceBox{
+      margin-top:14px;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#070707;
+      display:grid;
+      gap:6px;
+      font-size:14px;
+    }
+    .priceBox b{font-size:16px}
+
+    .badge{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid #2a2a2a;
+      background:#0f0f0f;
+      color:#ddd;
+      font-size:12px;
+      margin-top:10px;
+    }
+
+    .btn{
+      width:100%;
+      border:none;
+      border-radius:16px;
+      padding:14px 14px;
       font-size:16px;
       font-weight:800;
+      cursor:pointer;
+      margin-top:12px;
     }
-    .info {
-      font-size:14px;
-      margin-bottom:10px;
+    .btnPrimary{background:var(--accent); color:#fff}
+    .btnGreen{background:var(--accent2); color:#001b0d}
+    .btnGhost{
+      background:transparent;
+      border:1px solid #2a2a2a;
+      color:#fff;
+    }
+
+    .small{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:13px;
       line-height:1.6;
+    }
+
+    .codeBox{
+      margin-top:12px;
+      padding:12px;
+      border-radius:14px;
+      border:1px dashed #2f2f2f;
+      background:#060606;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .codeBox .code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size:16px;
+      font-weight:900;
+      letter-spacing:1px;
+    }
+    .warn{
+      color:#ffd1d1;
+      background:rgba(255,77,77,.12);
+      border:1px solid rgba(255,77,77,.25);
+      padding:10px 12px;
+      border-radius:14px;
+      margin-top:12px;
+      display:none;
+    }
+
+    .footerNote{
+      text-align:center;
+      color:#777;
+      font-size:12px;
+      margin-top:14px;
     }
   </style>
 </head>
+
 <body>
+  <div class="wrap">
+    <div class="card">
 
-<div class="card">
-  <h1>🧺 Express Pressing</h1>
+      <div class="brand">
+        <!-- ضع ملف logo.png داخل نفس الريبو -->
+        <img src="logo.png" alt="Express Pressing Logo" />
+        <div>
+          <h1>Express Pressing</h1>
+          <p>~ Fresh • Fast • Clean ~</p>
+        </div>
+      </div>
 
-  <div class="info">
-    📍 لكصر – نواكشوط<br>
-    🚚 توصيل مجاني<br>
-    ☎️ 33371707<br>
-    💳 الدفع: بنيكلي / مصرفي / سداد<br>
-    🧾 رقم الدفع: 33371707
+      <div class="info">
+        📍 لكصر - نواكشوط<br>
+        🚚 توصيل مجاني<br>
+        ☎️ 33371707<br>
+        💳 الدفع: بنكيلي / مصرفي / سداد<br>
+        🧾 رقم الدفع: 33371707
+        <div class="badge">بعد الدفع: ارفع سكرينشوت وسيطلع لك كود</div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>الاسم</label>
+          <input id="name" placeholder="اكتب اسمك" />
+        </div>
+        <div>
+          <label>رقم الهاتف</label>
+          <input id="phone" inputmode="numeric" placeholder="مثال: 33371707" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>الخدمة</label>
+          <!-- القيمة = سعر القطعة -->
+          <select id="service">
+            <option value="250">غسيل ملابس — 250 MRU</option>
+            <option value="300">غسيل + كوي — 300 MRU</option>
+            <option value="100">كوي فقط — 100 MRU</option>
+          </select>
+        </div>
+
+        <div>
+          <label>الكمية (1 - 100)</label>
+          <input id="qty" type="number" min="1" max="100" value="1" />
+        </div>
+      </div>
+
+      <div class="priceBox">
+        <div>سعر القطعة: <b id="unitPrice">0</b> MRU</div>
+        <div>المجموع: <b id="totalPrice">0</b> MRU</div>
+      </div>
+
+      <label>تفاصيل إضافية (اختياري)</label>
+      <textarea id="details" placeholder="مثال: ملابس بيضاء، حساسية من العطر..."></textarea>
+
+      <label>العنوان</label>
+      <textarea id="address" placeholder="الحي - الشارع - أقرب نقطة"></textarea>
+
+      <label>سكرينشوت الدفع (اختياري)</label>
+      <input id="payShot" type="file" accept="image/*" />
+
+      <button class="btn btnGreen" id="genCodeBtn">✅ طلّع كود بعد الدفع</button>
+
+      <div class="codeBox" id="codeBox" style="display:none;">
+        <div>
+          <div style="color:#aaa; font-size:12px;">كود الطلب</div>
+          <div class="code" id="orderCode">XP-0000</div>
+        </div>
+        <button class="btn btnGhost" style="width:auto; margin:0; padding:10px 12px;" id="copyBtn">نسخ</button>
+      </div>
+
+      <div class="warn" id="warnBox"></div>
+
+      <button class="btn btnPrimary" id="waBtn">إرسال الطلب عبر واتساب</button>
+
+      <div class="small">
+        ملاحظة: واتساب ما يقدر يرسل صورة الملف مباشرة من الموقع.  
+        بعد ما يفتح لك واتساب، أرسل الرسالة، وبعدها ارفق السِكرينشوت يدويًا في واتساب.
+      </div>
+
+      <div class="footerNote">© Express Pressing</div>
+    </div>
   </div>
 
-  <label>الإيميل</label>
-  <input id="email" type="email" placeholder="example@email.com">
+  <script>
+    // === إعداد رقم واتساب (بدّل الرقم إذا بدك) ===
+    // مهم: رقم واتساب بصيغة دولية بدون + ولا مسافات
+    // مثال موريتانيا: 22233371707 (222 + الرقم)
+    const WHATSAPP_NUMBER = "22233371707";
 
-  <label>الخدمة</label>
-  <select id="service">
-    <option>غسيل ملاحف كاز – 250 MRU</option>
-    <option>غسيل ملاحف غير كاز – 300 MRU</option>
-    <option>غسيل دراعة – 600 MRU</option>
-    <option>غسيل ملابس – 100 MRU</option>
-    <option>غسيل بدلة – 400 MRU</option>
-  </select>
+    const serviceEl = document.getElementById("service");
+    const qtyEl = document.getElementById("qty");
+    const unitPriceEl = document.getElementById("unitPrice");
+    const totalPriceEl = document.getElementById("totalPrice");
 
-  <label>تفاصيل إضافية</label>
-  <textarea id="details" placeholder="اكتب التفاصيل هنا"></textarea>
+    const nameEl = document.getElementById("name");
+    const phoneEl = document.getElementById("phone");
+    const detailsEl = document.getElementById("details");
+    const addressEl = document.getElementById("address");
+    const payShotEl = document.getElementById("payShot");
 
-  <label>العنوان</label>
-  <textarea id="address" placeholder="الحي، الشارع..."></textarea>
+    const genCodeBtn = document.getElementById("genCodeBtn");
+    const codeBox = document.getElementById("codeBox");
+    const orderCodeEl = document.getElementById("orderCode");
+    const copyBtn = document.getElementById("copyBtn");
+    const warnBox = document.getElementById("warnBox");
+    const waBtn = document.getElementById("waBtn");
 
-  <button onclick="sendOrder()">إرسال الطلب عبر واتساب</button>
-</div>
+    let ORDER_CODE = "";
 
-<script>
-  const WHATSAPP = "22233371707"; // رقم واتساب المغسلة
-
-  function sendOrder() {
-    const email = document.getElementById("email").value;
-    const service = document.getElementById("service").value;
-    const details = document.getElementById("details").value;
-    const address = document.getElementById("address").value;
-
-    if (!email || !address) {
-      alert("رجاءً أدخل الإيميل والعنوان");
-      return;
+    function showWarn(msg){
+      warnBox.style.display = "block";
+      warnBox.textContent = msg;
+      setTimeout(()=>{ warnBox.style.display = "none"; }, 3500);
     }
 
-    const message =
-`طلب جديد 🧺 Express Pressing
-------------------
-الإيميل: ${email}
-الخدمة: ${service}
-التفاصيل: ${details}
+    function calcPrice(){
+      const unit = parseInt(serviceEl.value || "0", 10);
+      let qty = parseInt(qtyEl.value || "1", 10);
+
+      if(isNaN(qty)) qty = 1;
+      if(qty < 1) qty = 1;
+      if(qty > 100) qty = 100;
+      qtyEl.value = qty;
+
+      unitPriceEl.textContent = unit;
+      totalPriceEl.textContent = unit * qty;
+    }
+
+    function makeCode(){
+      // كود بسيط: XP- + 4 أرقام
+      const num = Math.floor(1000 + Math.random() * 9000);
+      return "XP-" + num;
+    }
+
+    function hasPaymentProof(){
+      // اختياري: نعتبر الدفع موجود إذا رفع صورة أو كتب "تم الدفع" في التفاصيل
+      return (payShotEl.files && payShotEl.files.length > 0);
+    }
+
+    genCodeBtn.addEventListener("click", (e)=>{
+      e.preventDefault();
+
+      // إذا بدك "إجباري" سكرينشوت قبل الكود:
+      // if(!hasPaymentProof()){ showWarn("لازم ترفع سكرينشوت الدفع أولاً"); return; }
+
+      if(!ORDER_CODE) ORDER_CODE = makeCode();
+      orderCodeEl.textContent = ORDER_CODE;
+      codeBox.style.display = "flex";
+      showWarn("تم إنشاء الكود ✅");
+    });
+
+    copyBtn.addEventListener("click", async ()=>{
+      try{
+        await navigator.clipboard.writeText(orderCodeEl.textContent);
+        showWarn("تم النسخ ✅");
+      }catch{
+        showWarn("انسخ الكود يدويًا");
+      }
+    });
+
+    waBtn.addEventListener("click", ()=>{
+      const name = (nameEl.value || "").trim();
+      const phone = (phoneEl.value || "").trim();
+      const serviceText = serviceEl.options[serviceEl.selectedIndex].text;
+      const qty = qtyEl.value;
+      const unit = unitPriceEl.textContent;
+      const total = totalPriceEl.textContent;
+      const details = (detailsEl.value || "").trim();
+      const address = (addressEl.value || "").trim();
+
+      if(!name || !phone || !address){
+        showWarn("اكتب الاسم + رقم الهاتف + العنوان أولاً");
+        return;
+      }
+
+      if(!ORDER_CODE){
+        // تلقائيًا نطلع كود إذا ما طلعته
+        ORDER_CODE = makeCode();
+        orderCodeEl.textContent = ORDER_CODE;
+        codeBox.style.display = "flex";
+      }
+
+      const payNote = hasPaymentProof()
+        ? "✅ تم رفع سكرينشوت الدفع (ارسلها في واتساب)"
+        : "⚠️ لم يتم رفع سكرينشوت (ارسلها في واتساب بعد الدفع)";
+
+      const msg =
+`طلب جديد - Express Pressing
+————————————
+الاسم: ${name}
+رقم الهاتف: ${phone}
+الخدمة: ${serviceText}
+الكمية: ${qty}
+سعر القطعة: ${unit} MRU
+المجموع: ${total} MRU
 العنوان: ${address}
-------------------
-الدفع: بنيكلي / مصرفي / سداد
-رقم الدفع: 33371707
-☎️ 33371707`;
+تفاصيل: ${details || "—"}
+الدفع: ${payNote}
+كود الطلب: ${ORDER_CODE}
+————————————
+(بعد إرسال هذه الرسالة، أرفق سكرينشوت الدفع هنا في واتساب)`;
 
-    const url = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(message);
-    window.location.href = url;
-  }
-</script>
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+      window.open(url, "_blank");
+    });
 
+    serviceEl.addEventListener("change", calcPrice);
+    qtyEl.addEventListener("input", calcPrice);
+    calcPrice();
+  </script>
 </body>
 </html>
