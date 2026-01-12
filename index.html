@@ -7,188 +7,148 @@
 
   <style>
     :root{
-      --bg:#000;
-      --card:#0b0b0b;
-      --text:#fff;
-      --muted:#bdbdbd;
-      --line:#222;
-      --accent:#2d6cff;
-      --accent2:#15c16f;
-      --danger:#ff4d4d;
+      --bg:#ffffff;
+      --text:#111111;
+      --muted:#5a5a5a;
+      --line:#e8e8e8;
+      --card:#ffffff;
+      --black:#000000;
       --radius:18px;
     }
-
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
-      background: radial-gradient(1200px 600px at 50% -200px, #222 0%, #000 60%);
+      padding:16px;
+      font-family: system-ui, -apple-system, "Segoe UI", Arial;
+      background:var(--bg);
       color:var(--text);
-      padding:18px;
     }
-
-    .wrap{
-      max-width:680px;
-      margin:0 auto;
-    }
-
+    .wrap{max-width:720px;margin:0 auto;}
     .card{
-      background: linear-gradient(180deg, #0b0b0b 0%, #050505 100%);
+      background:var(--card);
       border:1px solid var(--line);
       border-radius:var(--radius);
-      padding:18px;
-      box-shadow: 0 12px 36px rgba(0,0,0,.45);
+      padding:16px;
+      box-shadow:0 10px 30px rgba(0,0,0,.06);
     }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      margin-bottom:14px;
+    .header{
+      display:flex;gap:12px;align-items:center;
+      border-bottom:1px solid var(--line);
+      padding-bottom:12px;margin-bottom:12px;
     }
-    .brand img{
-      width:64px;
-      height:64px;
-      border-radius:16px;
-      object-fit:cover;
-      border:1px solid #333;
-      background:#111;
+    .logo{
+      width:72px;height:72px;border:1px solid var(--line);
+      border-radius:16px;display:grid;place-items:center;
+      background:#fff;
+      flex:0 0 auto;
     }
-    .brand h1{
-      margin:0;
-      font-size:28px;
-      letter-spacing:.5px;
-    }
-    .brand p{
-      margin:6px 0 0 0;
-      color:var(--muted);
-      font-size:14px;
-    }
-
+    h1{margin:0;font-size:22px;letter-spacing:.3px}
+    .sub{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.6}
     .info{
-      margin:10px 0 16px 0;
-      padding:12px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      background:#070707;
-      color:#eaeaea;
-      line-height:1.8;
-      font-size:14px;
+      padding:12px;border:1px dashed var(--line);border-radius:14px;
+      color:var(--muted);font-size:13px;line-height:1.7;
+      background:#fafafa;
+      margin:12px 0;
     }
 
-    label{
-      display:block;
-      margin:12px 0 8px;
-      font-weight:700;
-      font-size:14px;
-    }
-
+    label{display:block;margin-top:12px;margin-bottom:6px;font-weight:800;font-size:14px}
     input, select, textarea{
       width:100%;
-      padding:13px 12px;
+      padding:12px;
+      border:1px solid var(--line);
       border-radius:14px;
-      border:1px solid #2a2a2a;
-      background:#0d0d0d;
-      color:#fff;
+      font-size:16px;
       outline:none;
-      font-size:15px;
+      background:#fff;color:var(--text);
+    }
+    textarea{min-height:84px;resize:vertical}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:560px){ .grid{grid-template-columns:1fr} }
+
+    .serviceBox{
+      margin-top:10px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      background:#fafafa;
+    }
+    .serviceTitle{margin:0 0 6px;font-weight:900}
+    .serviceDesc{margin:0;color:var(--muted);line-height:1.7}
+
+    .totalRow{
+      margin-top:12px;
+      display:flex;justify-content:space-between;align-items:center;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      font-weight:900;
+      background:#fff;
     }
 
-    input::placeholder, textarea::placeholder{color:#777}
-
-    textarea{min-height:90px; resize:vertical}
+    .pay{
+      margin-top:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      background:#fafafa;
+      color:var(--muted);
+      font-size:13px;line-height:1.7;
+    }
 
     .row{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
+      display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;
     }
-    @media (max-width:560px){
-      .row{grid-template-columns:1fr}
-      .brand h1{font-size:24px}
-    }
-
-    .priceBox{
-      margin-top:14px;
-      padding:12px;
-      border-radius:14px;
+    .check{
+      display:flex;align-items:center;gap:8px;
       border:1px solid var(--line);
-      background:#070707;
-      display:grid;
-      gap:6px;
-      font-size:14px;
-    }
-    .priceBox b{font-size:16px}
-
-    .badge{
-      display:inline-block;
-      padding:6px 10px;
       border-radius:999px;
-      border:1px solid #2a2a2a;
-      background:#0f0f0f;
-      color:#ddd;
-      font-size:12px;
+      padding:8px 10px;
+      background:#fff;
+      color:var(--text);
+      font-size:13px;
+    }
+    .codeBox{
       margin-top:10px;
+      display:none;
+      border:1px dashed var(--line);
+      border-radius:14px;
+      padding:12px;
+      background:#fff;
+      justify-content:space-between;align-items:center;gap:10px;
+    }
+    .code{
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-weight:900;
+      letter-spacing:1px;
+      font-size:16px;
     }
 
     .btn{
       width:100%;
+      margin-top:12px;
       border:none;
       border-radius:16px;
-      padding:14px 14px;
+      padding:14px;
       font-size:16px;
-      font-weight:800;
+      font-weight:900;
       cursor:pointer;
-      margin-top:12px;
     }
-    .btnPrimary{background:var(--accent); color:#fff}
-    .btnGreen{background:var(--accent2); color:#001b0d}
-    .btnGhost{
-      background:transparent;
-      border:1px solid #2a2a2a;
-      color:#fff;
-    }
+    .btnBlack{background:#000;color:#fff}
+    .btnGhost{background:#fff;border:1px solid var(--line);color:#000}
 
-    .small{
+    .warn{
+      display:none;
       margin-top:10px;
-      color:var(--muted);
+      border:1px solid #ffd0d0;
+      background:#fff5f5;
+      color:#7a1b1b;
+      padding:10px 12px;
+      border-radius:14px;
       font-size:13px;
       line-height:1.6;
     }
 
-    .codeBox{
-      margin-top:12px;
-      padding:12px;
-      border-radius:14px;
-      border:1px dashed #2f2f2f;
-      background:#060606;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .codeBox .code{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-      font-size:16px;
-      font-weight:900;
-      letter-spacing:1px;
-    }
-    .warn{
-      color:#ffd1d1;
-      background:rgba(255,77,77,.12);
-      border:1px solid rgba(255,77,77,.25);
-      padding:10px 12px;
-      border-radius:14px;
-      margin-top:12px;
-      display:none;
-    }
-
-    .footerNote{
-      text-align:center;
-      color:#777;
-      font-size:12px;
-      margin-top:14px;
-    }
+    .mini{margin-top:10px;color:var(--muted);font-size:12px;line-height:1.7}
   </style>
 </head>
 
@@ -196,43 +156,50 @@
   <div class="wrap">
     <div class="card">
 
-      <div class="brand">
-        <!-- ضع ملف logo.png داخل نفس الريبو -->
-        <img src="logo.png" alt="Express Pressing Logo" />
+      <div class="header">
+        <!-- لوغو أسود مرسوم بالكود (بدون رفع صور) -->
+        <div class="logo" aria-label="Express Pressing Logo">
+          <svg width="48" height="48" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <path d="M20 14h24a6 6 0 0 1 6 6v20c0 6-4 10-10 10H24c-6 0-10-4-10-10V20a6 6 0 0 1 6-6Z" stroke="#000" stroke-width="4" />
+            <path d="M24 26h16" stroke="#000" stroke-width="4" stroke-linecap="round"/>
+            <path d="M24 34h20" stroke="#000" stroke-width="4" stroke-linecap="round"/>
+            <path d="M26 52c2 4 10 6 16 0" stroke="#000" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+
         <div>
-          <h1>Express Pressing</h1>
-          <p>~ Fresh • Fast • Clean ~</p>
+          <h1>EXPRESS PRESSING</h1>
+          <div class="sub">
+            توصيل مجاني • لكصر - نواكشوط<br>
+            رقم الاتصال: 33371707
+          </div>
         </div>
       </div>
 
       <div class="info">
-        📍 لكصر - نواكشوط<br>
-        🚚 توصيل مجاني<br>
-        ☎️ 33371707<br>
-        💳 الدفع: بنكيلي / مصرفي / سداد<br>
-        🧾 رقم الدفع: 33371707
-        <div class="badge">بعد الدفع: ارفع سكرينشوت وسيطلع لك كود</div>
+        💳 الدفع عبر التطبيقات البنكية: بنيكلي / مصرفي / سداد<br>
+        🧾 رقم الدفع: <b>33371707</b>
       </div>
 
-      <div class="row">
+      <div class="grid">
         <div>
           <label>الاسم</label>
-          <input id="name" placeholder="اكتب اسمك" />
+          <input id="name" type="text" placeholder="اكتب اسمك" />
         </div>
         <div>
           <label>رقم الهاتف</label>
-          <input id="phone" inputmode="numeric" placeholder="مثال: 33371707" />
+          <input id="phone" type="tel" placeholder="مثال: 33371707" />
         </div>
       </div>
 
-      <div class="row">
+      <div class="grid">
         <div>
           <label>الخدمة</label>
-          <!-- القيمة = سعر القطعة -->
           <select id="service">
-            <option value="250">غسيل ملابس — 250 MRU</option>
-            <option value="300">غسيل + كوي — 300 MRU</option>
-            <option value="100">كوي فقط — 100 MRU</option>
+            <option value="250" data-title="غسيل ملاحف كاز" data-unit="للقطعة" data-desc="غسيل ملاحف كاز بجودة عالية">250 MRU — غسيل ملاحف كاز</option>
+            <option value="300" data-title="غسيل ملاحف غير كاز" data-unit="للقطعة" data-desc="غسيل ملاحف غير كاز بجودة عالية">300 MRU — غسيل ملاحف غير كاز</option>
+            <option value="600" data-title="غسيل دراعة" data-unit="للقطعة" data-desc="غسيل وتنظيف دراريع بجودة عالية">600 MRU — غسيل دراعة</option>
+            <option value="100" data-title="غسيل ملابس" data-unit="للقطعة" data-desc="غسيل عادي لجميع أنواع الملابس">100 MRU — غسيل ملابس</option>
           </select>
         </div>
 
@@ -242,169 +209,201 @@
         </div>
       </div>
 
-      <div class="priceBox">
-        <div>سعر القطعة: <b id="unitPrice">0</b> MRU</div>
-        <div>المجموع: <b id="totalPrice">0</b> MRU</div>
+      <div class="serviceBox" id="serviceBox">
+        <p class="serviceTitle" id="serviceTitle">—</p>
+        <p class="serviceDesc" id="serviceDesc">—</p>
       </div>
 
-      <label>تفاصيل إضافية (اختياري)</label>
-      <textarea id="details" placeholder="مثال: ملابس بيضاء، حساسية من العطر..."></textarea>
+      <div class="totalRow">
+        <span>المجموع</span>
+        <span id="total">0 MRU</span>
+      </div>
 
       <label>العنوان</label>
-      <textarea id="address" placeholder="الحي - الشارع - أقرب نقطة"></textarea>
+      <textarea id="address" placeholder="الحي - الشارع - أقرب نقطة..."></textarea>
+
+      <label>ملاحظات (اختياري)</label>
+      <textarea id="notes" placeholder="مثال: مستعجل / بدون عطر / بقع..."></textarea>
+
+      <div class="pay">
+        📸 بعد الدفع: ارفع سكرينشوت الدفع هنا (اختياري) ثم اضغط “تم الدفع” ليطلع كود الطلب.<br>
+        ⚠️ ملاحظة مهمة: الموقع ما يرسل الصورة تلقائيًا، لازم الزبون يرفقها يدويًا داخل واتساب بعد ما تفتح المحادثة.
+      </div>
 
       <label>سكرينشوت الدفع (اختياري)</label>
       <input id="payShot" type="file" accept="image/*" />
 
-      <button class="btn btnGreen" id="genCodeBtn">✅ طلّع كود بعد الدفع</button>
+      <div class="row">
+        <label class="check">
+          <input id="paid" type="checkbox" />
+          تم الدفع
+        </label>
+        <button class="btn btnGhost" id="genCodeBtn" type="button">إصدار كود الطلب</button>
+      </div>
 
-      <div class="codeBox" id="codeBox" style="display:none;">
+      <div class="codeBox" id="codeBox">
         <div>
-          <div style="color:#aaa; font-size:12px;">كود الطلب</div>
+          <div style="color:#666;font-size:12px;margin-bottom:4px;">كود الطلب</div>
           <div class="code" id="orderCode">XP-0000</div>
         </div>
-        <button class="btn btnGhost" style="width:auto; margin:0; padding:10px 12px;" id="copyBtn">نسخ</button>
+        <button class="btn btnGhost" id="copyBtn" type="button" style="width:auto;margin:0;padding:10px 12px;">نسخ</button>
       </div>
 
-      <div class="warn" id="warnBox"></div>
+      <div class="warn" id="warn"></div>
 
-      <button class="btn btnPrimary" id="waBtn">إرسال الطلب عبر واتساب</button>
+      <button class="btn btnBlack" id="waBtn" type="button">إرسال الطلب عبر واتساب</button>
 
-      <div class="small">
-        ملاحظة: واتساب ما يقدر يرسل صورة الملف مباشرة من الموقع.  
-        بعد ما يفتح لك واتساب، أرسل الرسالة، وبعدها ارفق السِكرينشوت يدويًا في واتساب.
+      <div class="mini">
+        ✅ توصيل مجاني • موقع: لكصر نواكشوط • رقم: 33371707
       </div>
-
-      <div class="footerNote">© Express Pressing</div>
     </div>
   </div>
 
   <script>
-    // === إعداد رقم واتساب (بدّل الرقم إذا بدك) ===
-    // مهم: رقم واتساب بصيغة دولية بدون + ولا مسافات
-    // مثال موريتانيا: 22233371707 (222 + الرقم)
+    // غيّر رقم واتساب هنا إذا لازم (كود الدولة + الرقم بدون +)
     const WHATSAPP_NUMBER = "22233371707";
 
     const serviceEl = document.getElementById("service");
     const qtyEl = document.getElementById("qty");
-    const unitPriceEl = document.getElementById("unitPrice");
-    const totalPriceEl = document.getElementById("totalPrice");
+    const totalEl = document.getElementById("total");
+    const titleEl = document.getElementById("serviceTitle");
+    const descEl = document.getElementById("serviceDesc");
 
-    const nameEl = document.getElementById("name");
-    const phoneEl = document.getElementById("phone");
-    const detailsEl = document.getElementById("details");
-    const addressEl = document.getElementById("address");
+    const paidEl = document.getElementById("paid");
     const payShotEl = document.getElementById("payShot");
-
     const genCodeBtn = document.getElementById("genCodeBtn");
     const codeBox = document.getElementById("codeBox");
     const orderCodeEl = document.getElementById("orderCode");
     const copyBtn = document.getElementById("copyBtn");
-    const warnBox = document.getElementById("warnBox");
+    const warnEl = document.getElementById("warn");
+
+    const nameEl = document.getElementById("name");
+    const phoneEl = document.getElementById("phone");
+    const addressEl = document.getElementById("address");
+    const notesEl = document.getElementById("notes");
     const waBtn = document.getElementById("waBtn");
 
     let ORDER_CODE = "";
 
-    function showWarn(msg){
-      warnBox.style.display = "block";
-      warnBox.textContent = msg;
-      setTimeout(()=>{ warnBox.style.display = "none"; }, 3500);
+    function warn(msg){
+      warnEl.style.display = "block";
+      warnEl.textContent = msg;
+      setTimeout(()=>{ warnEl.style.display = "none"; }, 3500);
     }
 
-    function calcPrice(){
-      const unit = parseInt(serviceEl.value || "0", 10);
-      let qty = parseInt(qtyEl.value || "1", 10);
+    function clampQty(){
+      let q = parseInt(qtyEl.value || "1", 10);
+      if (isNaN(q)) q = 1;
+      if (q < 1) q = 1;
+      if (q > 100) q = 100;
+      qtyEl.value = q;
+      return q;
+    }
 
-      if(isNaN(qty)) qty = 1;
-      if(qty < 1) qty = 1;
-      if(qty > 100) qty = 100;
-      qtyEl.value = qty;
+    function getService(){
+      const opt = serviceEl.options[serviceEl.selectedIndex];
+      return {
+        price: parseInt(opt.value || "0", 10),
+        title: opt.dataset.title || opt.text,
+        unit: opt.dataset.unit || "",
+        desc: opt.dataset.desc || ""
+      };
+    }
 
-      unitPriceEl.textContent = unit;
-      totalPriceEl.textContent = unit * qty;
+    function update(){
+      const s = getService();
+      const q = clampQty();
+      titleEl.textContent = `${s.price} MRU — ${s.title} (${s.unit})`;
+      descEl.textContent = s.desc;
+      totalEl.textContent = `${s.price * q} MRU`;
     }
 
     function makeCode(){
-      // كود بسيط: XP- + 4 أرقام
-      const num = Math.floor(1000 + Math.random() * 9000);
-      return "XP-" + num;
+      const d = new Date();
+      const y = d.getFullYear();
+      const m = String(d.getMonth()+1).padStart(2,"0");
+      const day = String(d.getDate()).padStart(2,"0");
+      const rnd = Math.floor(1000 + Math.random() * 9000);
+      return `XP-${y}${m}${day}-${rnd}`;
     }
 
-    function hasPaymentProof(){
-      // اختياري: نعتبر الدفع موجود إذا رفع صورة أو كتب "تم الدفع" في التفاصيل
-      return (payShotEl.files && payShotEl.files.length > 0);
-    }
+    genCodeBtn.addEventListener("click", ()=>{
+      // اختياري: إذا بدك تجبرهم يحددوا "تم الدفع"
+      if(!paidEl.checked){
+        warn("فعّل خيار (تم الدفع) أولاً ✅");
+        return;
+      }
 
-    genCodeBtn.addEventListener("click", (e)=>{
-      e.preventDefault();
-
-      // إذا بدك "إجباري" سكرينشوت قبل الكود:
-      // if(!hasPaymentProof()){ showWarn("لازم ترفع سكرينشوت الدفع أولاً"); return; }
+      // اختياري: إذا بدك تجبرهم يرفعوا سكرينشوت قبل الكود
+      // if(!(payShotEl.files && payShotEl.files.length)){ warn("ارفع سكرينشوت الدفع أولاً"); return; }
 
       if(!ORDER_CODE) ORDER_CODE = makeCode();
       orderCodeEl.textContent = ORDER_CODE;
       codeBox.style.display = "flex";
-      showWarn("تم إنشاء الكود ✅");
+      warn("تم إصدار كود الطلب ✅");
     });
 
     copyBtn.addEventListener("click", async ()=>{
       try{
         await navigator.clipboard.writeText(orderCodeEl.textContent);
-        showWarn("تم النسخ ✅");
+        warn("تم النسخ ✅");
       }catch{
-        showWarn("انسخ الكود يدويًا");
+        warn("انسخ الكود يدويًا");
       }
     });
 
     waBtn.addEventListener("click", ()=>{
-      const name = (nameEl.value || "").trim();
-      const phone = (phoneEl.value || "").trim();
-      const serviceText = serviceEl.options[serviceEl.selectedIndex].text;
-      const qty = qtyEl.value;
-      const unit = unitPriceEl.textContent;
-      const total = totalPriceEl.textContent;
-      const details = (detailsEl.value || "").trim();
-      const address = (addressEl.value || "").trim();
+      const name = nameEl.value.trim();
+      const phone = phoneEl.value.trim();
+      const address = addressEl.value.trim();
+      const notes = notesEl.value.trim();
 
       if(!name || !phone || !address){
-        showWarn("اكتب الاسم + رقم الهاتف + العنوان أولاً");
+        warn("اكتب الاسم + رقم الهاتف + العنوان أولاً");
         return;
       }
 
-      if(!ORDER_CODE){
-        // تلقائيًا نطلع كود إذا ما طلعته
+      const s = getService();
+      const q = clampQty();
+      const total = s.price * q;
+
+      // لو ما طلع كود ولسه عامل تم الدفع → نطلع كود تلقائي
+      if(paidEl.checked && !ORDER_CODE){
         ORDER_CODE = makeCode();
         orderCodeEl.textContent = ORDER_CODE;
         codeBox.style.display = "flex";
       }
 
-      const payNote = hasPaymentProof()
-        ? "✅ تم رفع سكرينشوت الدفع (ارسلها في واتساب)"
-        : "⚠️ لم يتم رفع سكرينشوت (ارسلها في واتساب بعد الدفع)";
+      const hasShot = (payShotEl.files && payShotEl.files.length) ? "✅ يوجد سكرينشوت (يرسل على واتساب)" : "⚠️ بدون سكرينشوت (يرسل على واتساب بعد الدفع)";
+      const codeLine = ORDER_CODE ? `كود الطلب: ${ORDER_CODE}` : "كود الطلب: (غير صادر بعد)";
 
       const msg =
-`طلب جديد - Express Pressing
-————————————
+`طلب جديد - EXPRESS PRESSING
 الاسم: ${name}
-رقم الهاتف: ${phone}
-الخدمة: ${serviceText}
-الكمية: ${qty}
-سعر القطعة: ${unit} MRU
+الهاتف: ${phone}
+
+الخدمة: ${s.title}
+السعر: ${s.price} MRU (${s.unit})
+الكمية: ${q}
 المجموع: ${total} MRU
+
 العنوان: ${address}
-تفاصيل: ${details || "—"}
-الدفع: ${payNote}
-كود الطلب: ${ORDER_CODE}
-————————————
-(بعد إرسال هذه الرسالة، أرفق سكرينشوت الدفع هنا في واتساب)`;
+ملاحظات: ${notes || "—"}
+
+الدفع: ${paidEl.checked ? "تم الدفع ✅" : "لم يتم الدفع بعد"}
+${hasShot}
+${codeLine}
+
+رقم الدفع: 33371707
+(أرفق سكرينشوت الدفع هنا في واتساب)`;
 
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
       window.open(url, "_blank");
     });
 
-    serviceEl.addEventListener("change", calcPrice);
-    qtyEl.addEventListener("input", calcPrice);
-    calcPrice();
+    serviceEl.addEventListener("change", update);
+    qtyEl.addEventListener("input", update);
+    update();
   </script>
 </body>
 </html>
